@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf4go3s3yjwhq"]
+
+[ext_resource type="Texture2D" uid="uid://02s37u6ok6kf" path="res://fish/textures/fish.png" id="1_dulkr"]
+[ext_resource type="Script" path="res://fish/fish.gd" id="2_4pvfx"]
+[ext_resource type="AudioStream" uid="uid://b0iimsbyeurel" path="res://fish/sound/fish.wav" id="3_bt875"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8dlg"]
+radius = 70.0
+
+[node name="Fish" type="Area2D"]
+collision_mask = 0
+script = ExtResource("2_4pvfx")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_dulkr")
+offset = Vector2(0, -100)
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a8dlg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bt875")

@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://ddchrj8naafhh"]
+
+[ext_resource type="Script" path="res://game/game.gd" id="1_4v7av"]
+[ext_resource type="Texture2D" uid="uid://cx5kuciec7d7j" path="res://game/textures/background.png" id="1_6cauk"]
+[ext_resource type="Texture2D" uid="uid://547h0w8lbe4w" path="res://game/textures/midground.png" id="2_3cm51"]
+[ext_resource type="Shader" path="res://game/water.gdshader" id="3_yuu52"]
+[ext_resource type="PackedScene" uid="uid://cf4go3s3yjwhq" path="res://fish/fish.tscn" id="4_oh5v6"]
+[ext_resource type="Script" path="res://game/HUD.gd" id="6_aiihi"]
+[ext_resource type="FontFile" uid="uid://bpu3uqif7i11r" path="res://bubblebutt.ttf" id="7_t7kf5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5b366"]
+noise_type = 4
+fractal_type = 2
+fractal_octaves = 10
+fractal_lacunarity = 5.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c878c"]
+seamless = true
+noise = SubResource("FastNoiseLite_5b366")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dsax4"]
+shader = ExtResource("3_yuu52")
+shader_parameter/scroll = Vector2(0.1, 0.1)
+shader_parameter/distortion_strength = 0.15
+shader_parameter/tone_color = Color(0.541176, 0.647059, 0.996078, 1)
+shader_parameter/light_start = 0.3
+shader_parameter/light_end = 0.4
+shader_parameter/top_color = Color(0.105882, 0.184314, 0.152941, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_c878c")
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("fish")]
+script = ExtResource("1_4v7av")
+fish = NodePath("Fish")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="MG" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+position = Vector2(540, 960)
+texture = ExtResource("2_3cm51")
+region_enabled = true
+region_rect = Rect2(0, 0, 1080, 1920)
+
+[node name="BG" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dsax4")
+position = Vector2(540, 963)
+texture = ExtResource("1_6cauk")
+region_enabled = true
+region_rect = Rect2(0, 0, 1080, 1920)
+
+[node name="Fish" parent="." instance=ExtResource("4_oh5v6")]
+position = Vector2(527, 957)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_aiihi")
+
+[node name="Margin" type="MarginContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Timer" type="Label" parent="CanvasLayer/HUD/Margin"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("7_t7kf5")
+theme_override_font_sizes/font_size = 96
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer/HUD/Margin"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("7_t7kf5")
+theme_override_font_sizes/font_size = 200
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="CanvasLayer/HUD/Margin"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.439216, 0.509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("7_t7kf5")
+theme_override_font_sizes/font_size = 90
+text = "Você perdeu!
+Sua pontuação foi:
+"
+horizontal_alignment = 1
+vertical_alignment = 1

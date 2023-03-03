@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bey7h44tx6hoo"]
+
+[ext_resource type="Texture2D" uid="uid://dq3cfpytns6qw" path="res://bubble/textures/bubble.png" id="1_ghbp3"]
+[ext_resource type="Script" path="res://bubble/bubble.gd" id="1_hsq5t"]
+[ext_resource type="AudioStream" uid="uid://bp0mukqttx1r5" path="res://bubble/sound/bubble.wav" id="3_qb435"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_838sj"]
+radius = 120.0
+
+[node name="Bubble" type="Node2D"]
+script = ExtResource("1_hsq5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ghbp3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_838sj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qb435")
