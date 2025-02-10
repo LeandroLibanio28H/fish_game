@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://ddchrj8naafhh"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_4v7av"]
-[ext_resource type="Texture2D" uid="uid://cx5kuciec7d7j" path="res://game/textures/background.png" id="1_6cauk"]
-[ext_resource type="Texture2D" uid="uid://547h0w8lbe4w" path="res://game/textures/midground.png" id="2_3cm51"]
+[ext_resource type="Texture2D" uid="uid://y6akme2p3o2i" path="res://game/textures/background.png" id="1_6cauk"]
+[ext_resource type="Texture2D" uid="uid://bwsgotjj1xoaj" path="res://game/textures/midground.png" id="2_3cm51"]
 [ext_resource type="Shader" path="res://game/water.gdshader" id="3_yuu52"]
 [ext_resource type="PackedScene" uid="uid://cf4go3s3yjwhq" path="res://fish/fish.tscn" id="4_oh5v6"]
 [ext_resource type="Script" path="res://game/HUD.gd" id="6_aiihi"]
-[ext_resource type="FontFile" uid="uid://bpu3uqif7i11r" path="res://bubblebutt.ttf" id="7_t7kf5"]
+[ext_resource type="FontFile" uid="uid://de08cpx2slkms" path="res://bubblebutt.ttf" id="7_t7kf5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5b366"]
 noise_type = 4

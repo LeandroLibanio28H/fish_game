@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Fish Game"
 run/main_scene="res://game/game.tscn"
-config/features=PackedStringArray("4.0", "Mobile")
+config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
@@ -21,8 +21,12 @@ window/size/viewport_width=1080
 window/size/viewport_height=1920
 window/size/window_width_override=360
 window/size/window_height_override=640
-window/handheld/orientation=1
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
+
+[dotnet]
+
+project/assembly_name="Fish Game"
 
 [input_devices]
 
